@@ -175,7 +175,7 @@ class WebhookHandler(webapp2.RequestHandler):
            j = PrayTimes()
            times = j.getTimes(date.today(),(lat,lng),7)
            for u in ['Imsak','Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha']:
-               string_reply = (u + ': '+times[u.lower()])
+               string_reply += (u + ': '+times[u.lower()])
 
            reply(string_reply)
 
