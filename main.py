@@ -8,13 +8,15 @@ from bs4 import BeautifulSoup
 # for sending images
 from PIL import Image
 import multipart
-
+from praytimes import PrayTimes
+import json
+from datetime import date
 # standard app engine imports
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 import webapp2
 
-TOKEN = '###'
+TOKEN = '89686108:AAHwc3pddrCLSASlhu5ZSoaF24RaKlRk9_Q'
 
 BASE_URL = 'https://api.telegram.org/bot' + TOKEN + '/'
 
@@ -160,6 +162,22 @@ class WebhookHandler(webapp2.RequestHandler):
             reply(y)
 #quran
 
+
+       elif 'sholat' in text:
+           awal = text.replace("sholat","maps.googleapis.com/maps/api/geocode/json?address")
+	   ahir = text.replace(" ","=")
+            
+           url= "https://"+ahir
+           json_string = urllib2.urlopen(url)
+           data = json.load(json_string)
+           lat = data['results'][0]['geometry']['location']['lat']
+           lng = data['results'][0]['geometry']['location']['lng']
+           j = PrayTimes()
+           times = j.getTimes(date.today(),(lat,lng),7)
+           for u in ['Imsak','Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha']:
+               string_reply = (u + ': '+times[u.lower()])
+
+           reply(string_reply)
 
         else:
             if getEnabled(chat_id):
