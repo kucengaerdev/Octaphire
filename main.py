@@ -133,7 +133,7 @@ class WebhookHandler(webapp2.RequestHandler):
         elif 'rizky' in text:
             reply('apa manggil-manggil si rizky. dia itu punya aku')
         elif 'who are you' in text:
-            reply('telebot starter kit, created by yukuku: https://github.com/yukuku/telebot')
+            reply('octaphire created by kucengaerdev laboratory gan, https://github.com/kucengaerdev/Octhphire')
         elif 'what time' in text:
             reply('look at the top-right corner of your screen!')
 
@@ -172,6 +172,8 @@ class WebhookHandler(webapp2.RequestHandler):
            data = json.load(json_string)
            lat = data['results'][0]['geometry']['location']['lat']
            lng = data['results'][0]['geometry']['location']['lng']
+           city = url.replace("https://maps.googleapis.com/maps/api/geocode/json?address=","waktu sholat untuk kota ")
+           string_reply = city+" dalam waktu indonesia bagian barat(WIB). "
            j = PrayTimes()
            times = j.getTimes(date.today(),(lat,lng),7)
            for u in ['Imsak','Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha']:
