@@ -163,7 +163,7 @@ class WebhookHandler(webapp2.RequestHandler):
 #quran
 
 
-       elif 'sholat' in text:
+        elif 'sholat' in text:
            awal = text.replace("sholat","maps.googleapis.com/maps/api/geocode/json?address")
 	   ahir = text.replace(" ","=")
             
@@ -181,7 +181,7 @@ class WebhookHandler(webapp2.RequestHandler):
 
            reply(string_reply)
 
-        else:
+         else:
             if getEnabled(chat_id):
                 resp1 = json.load(urllib2.urlopen('http://www.simsimi.com/requestChat?lc=en&ft=1.0&req=' + urllib.quote_plus(text.encode('utf-8'))))
                 back = resp1.get('res')
