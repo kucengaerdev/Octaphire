@@ -136,6 +136,8 @@ class WebhookHandler(webapp2.RequestHandler):
             reply('octaphire created by kucengaerdev laboratory gan, https://github.com/kucengaerdev/Octhphire')
         elif 'what time' in text:
             reply('look at the top-right corner of your screen!')
+        elif 'siapa lo' in text:
+             reply('aku adalah seorang muslim jika aku sendirian dan komunis jika aku dalam kerumunan karena Allah berfirman setan ada dalam kerumunan (Tan Malaka)')
 
         elif 'qget' in text:
             reply("wait")
